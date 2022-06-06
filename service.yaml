@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nasa-service-loadbalancer
+  namespace: nasa-assigment
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+spec:
+  type: NodePort
+  selector:
+    app: nasa
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001
+      nodePort: 30301
+  type: LoadBalancer

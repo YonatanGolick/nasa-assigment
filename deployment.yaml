@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nasa-deployment
+  namespace: nasa-assigment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nasa
+  template:
+    metadata:
+      labels:
+        app: nasa
+    spec:
+      containers:
+      - name: nasa-assigment
+        image: docker.io/yonatangolick/nasa-assigment:latest 
+        ports:
+        - containerPort: 5001
+      imagePullSecrets:
+        - name: regcred
